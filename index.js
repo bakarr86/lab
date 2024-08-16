@@ -88,7 +88,31 @@ topMenuLinks.forEach( (link) => {
               subMenuEl.appendChild(newSubLink);
           });
         }
-        
+        //Attach a delegated &#39;click&#39; event listener to subMenuEl.
+subMenuEl.addEventListener(&#39;click&#39;, ( event ) =&gt; {
+  event.preventDefault()
+  // Check if the clicked element is an &lt;a&gt; element
+  if (!event.target.matches(&#39;a&#39;)) {
+  return; // Exit the function if the clicked element is not an &lt;a&gt; element
+  }
+  // Log the content of the &lt;a&gt; element to verify the handler is working
+  console.log(event.target.textContent);
+  // the event listener should set the CSS top property of subMenuEl to 0.
+  subMenuEl.style.top = &#39;0%&#39;; // Set the CSS top property of subMenuEl to 0%
+  // Remove &#39;active&#39; class from all &lt;a&gt; elements inside topMenuEl
+  topMenuLinks.forEach(link =&gt; {
+  link.classList.remove(&#39;active&#39;);
+  });
+  
+  // Update the contents of mainEl within an &lt;h1&gt; to the contents of the &lt;a&gt; element clicked
+  within subMenuEl.
+  mainEl.innerHTML = `&lt;h1&gt;${event.target.textContent}&lt;/h1&gt;`;
+  // If the ABOUT link is clicked, an &lt;h1&gt;About&lt;/h1&gt; should be displayed.
+  
+  if (event.target.textContent === &quot;about&quot;) {
+  mainEl.innerHTML = &#39;&lt;h1&gt;About&lt;/h1&gt;&#39;;
+  }
+  });
         
         
 
@@ -96,12 +120,12 @@ topMenuLinks.forEach( (link) => {
  
       }}})
   
-    subMenuEl.addEventListener('click', ( event ) => {
+    subMenuEl.addEventListener('click', ( event )=>{ 
       event.preventDefault()
     
       if (!event.target.matches('a')) {
           return; 
       }
 
-  }
+    })  
 
